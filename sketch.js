@@ -1,13 +1,15 @@
 let bg = ["#F2EDEC"];
 let colors=["#e9c46a", "#e63946", "#f7ede2", "#ffffff", "#582f0e"];
-let color1 = [  "#7f5539",
+let color1 = [  
+"#7f5539",
 "#606c38",
 "#ff758f",
 "#f7ede2",
 "#936639",
 "#4ecdc4",
 "#f9c74f",];
-let color2 = [   "#582f0e",
+let color2 = [   
+"#582f0e",
 "#c6ac8f",
 "#fe6d73",
 "#713200",
@@ -27,7 +29,13 @@ class ball_class{
     this.s=args.s||random(color1)  //邊框
     this.s1=random(color2) 
     this.ro=args.ro||random(-20, 20)
-
+    let offset = height / 10;
+    let margin = offset / 2;
+    let h = (height - offset * 2 - margin * 3) /4 ;
+    let d = h;
+    this.w1=random(-d / 3, d / 3)
+    this.w2=random(-d / 14, -d / 2.5)
+    this.w3=random(d / 10)
   }
   draw(){
     push();
@@ -57,19 +65,11 @@ let d = h;
       // scale(this.r)
       drawingContext.fillStyle = gradient;
       arc(0, 0, d * 0.9, d, 180, 360);
-
       circle(0, d / 8, d / 2);
       circle(d / 3, d / 8, d / 2);
       circle(-d / 3, d / 8, d / 2);
-
-      for (let n = 0; n < d / 5; n++) {
-        fill(random(this.c));
-        circle(
-          random(-d / 3, d / 3),
-          random(-d / 14, -d / 2.5),
-          random(d / 10)
-        );
-      }
+      fill(this.c)
+      circle(this.w1,this.w2,this.w3);
     pop();
   } 
   update(){  //物件更新後的程式碼
